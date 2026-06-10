@@ -387,7 +387,7 @@ function CartDrawer({ cart, setCart, open, setOpen, showToast, onCheckout }: {
               style={{ background: "rgba(0,240,255,0.06)", border: "1px solid rgba(0,240,255,0.2)", color: "var(--neon-cyan)" }}>
               📍 Pickup details sent after order confirmation
             </div>
-            <button className="btn-neon w-full" onClick={() => { showToast("Checkout coming soon! 🏆", "info"); }}>
+            <button className="btn-neon w-full" onClick={onCheckout}>
               Checkout →
             </button>
           </div>
