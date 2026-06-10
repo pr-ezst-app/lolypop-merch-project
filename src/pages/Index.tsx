@@ -136,10 +136,164 @@ function ToastContainer({ toasts, remove }: { toasts: Toast[]; remove: (id: numb
   );
 }
 
-function CartDrawer({ cart, setCart, open, setOpen, showToast }: {
+function CheckoutModal({ cart, total, onClose, onConfirm }: {
+  cart: CartItem[]; total: number;
+  onClose: () => void;
+  onConfirm: (info: { name: string; email: string; phone: string; note: string }) => void;
+}) {
+  const [form, setForm] = useState({ name: "", email: "", phone: "", note: "" });
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const validate = () => {
+    const e: Record<string, string> = {};
+    if (!form.name.trim()) e.name = "Required";
+    if (!form.email.trim() || !/\S+@\S+\.\S+/.test(form.email)) e.email = "Valid email required";
+    if (!form.phone.trim()) e.phone = "Required";
+    return e;
+  };
+
+  const submit = (ev: React.FormEvent) => {
+    ev.preventDefault();
+    const e = validate();
+    if (Object.keys(e).length) { setErrors(e); return; }
+    onConfirm(form);
+  };
+
+  const field = (key: keyof typeof form, label: string, placeholder: string, type = "text", required = true) => (
+    <div>
+      <label className="block text-xs font-bold mb-1.5" style={{ color: "rgba(255,255,255,0.5)", letterSpacing: "0.08em" }}>
+        {label}{required && " *"}
+      </label>
+      <input type={type} value={form[key]} onChange={e => { setForm({ ...form, [key]: e.target.value }); setErrors({ ...errors, [key]: "" }); }}
+        placeholder={placeholder}
+        className="w-full px-4 py-3 rounded-xl text-white text-sm focus:outline-none transition-all"
+        style={{
+          background: "rgba(255,255,255,0.06)",
+          border: `1px solid ${errors[key] ? "var(--neon-pink)" : form[key] ? "rgba(255,77,166,0.4)" : "rgba(255,255,255,0.1)"}`,
+        }} />
+      {errors[key] && <p className="text-xs mt-1" style={{ color: "var(--neon-pink)" }}>{errors[key]}</p>}
+    </div>
+  );
+
+  return (
+    <div className="fixed inset-0 z-[95] flex items-center justify-center p-4"
+      style={{ background: "rgba(0,0,0,0.85)", backdropFilter: "blur(10px)" }}>
+      <div className="w-full max-w-lg rounded-3xl overflow-hidden animate-slide-up"
+        style={{ background: "#141414", border: "1px solid rgba(255,77,166,0.35)", maxHeight: "90vh", overflowY: "auto" }}>
+        {/* Header */}
+        <div className="flex items-center justify-between px-6 py-5 sticky top-0 z-10"
+          style={{ background: "#141414", borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
+          <div className="flex items-center gap-3">
+            <button onClick={onClose} style={{ color: "rgba(255,255,255,0.4)" }}>
+              <Icon name="ArrowLeft" size={20} />
+            </button>
+            <h2 className="font-display text-2xl" style={{ color: "var(--neon-pink)" }}>Checkout</h2>
+          </div>
+          <button onClick={onClose} style={{ color: "rgba(255,255,255,0.4)" }}>
+            <Icon name="X" size={20} />
+          </button>
+        </div>
+
+        <form onSubmit={submit} className="px-6 py-5 flex flex-col gap-5">
+          {/* Order summary */}
+          <div className="rounded-2xl p-4" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}>
+            <p className="text-xs font-bold mb-3" style={{ color: "rgba(255,255,255,0.4)", letterSpacing: "0.1em" }}>ORDER SUMMARY</p>
+            <div className="flex flex-col gap-2">
+              {cart.map((item, i) => (
+                <div key={i} className="flex items-center justify-between text-sm">
+                  <div className="flex items-center gap-2">
+                    <img src={item.product.img} className="w-8 h-8 rounded-lg object-cover" alt="" />
+                    <span className="text-white font-medium">{item.product.name}</span>
+                    <span style={{ color: "rgba(255,255,255,0.35)" }}>× {item.qty}</span>
+                    <span className="text-xs px-1.5 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.07)", color: "rgba(255,255,255,0.4)" }}>{item.size}</span>
+                  </div>
+                  <span className="font-bold" style={{ color: "var(--neon-yellow)" }}>${item.product.priceNum * item.qty}</span>
+                </div>
+              ))}
+            </div>
+            <div className="flex justify-between mt-3 pt-3 font-display text-xl" style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}>
+              <span className="text-white">Total</span>
+              <span style={{ color: "var(--neon-yellow)" }}>${total}</span>
+            </div>
+          </div>
+
+          {/* Pickup notice */}
+          <div className="flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-semibold"
+            style={{ background: "rgba(0,240,255,0.06)", border: "1px solid rgba(0,240,255,0.2)", color: "var(--neon-cyan)" }}>
+            <Icon name="MapPin" size={18} color="var(--neon-cyan)" />
+            Pickup only — we'll contact you with details after confirming your order.
+          </div>
+
+          {/* Customer info */}
+          <div>
+            <p className="text-xs font-bold mb-3" style={{ color: "rgba(255,255,255,0.4)", letterSpacing: "0.1em" }}>YOUR INFO</p>
+            <div className="flex flex-col gap-3">
+              {field("name", "Full Name", "Your full name")}
+              {field("email", "Email", "your@email.com", "email")}
+              {field("phone", "Phone", "+1 (555) 000-0000", "tel")}
+              {field("note", "Note for pickup (optional)", "e.g. preferred pickup time, questions…", "text", false)}
+            </div>
+          </div>
+
+          <button type="submit" className="btn-neon w-full text-lg py-4">
+            Place Order 🏆
+          </button>
+          <p className="text-xs text-center" style={{ color: "rgba(255,255,255,0.3)" }}>
+            No payment taken now — pay at pickup.
+          </p>
+        </form>
+      </div>
+    </div>
+  );
+}
+
+function OrderConfirmation({ order, onDone }: {
+  order: { name: string; email: string; phone: string; note: string; items: CartItem[]; total: number; orderId: string };
+  onDone: () => void;
+}) {
+  return (
+    <div className="fixed inset-0 z-[95] flex items-center justify-center p-4"
+      style={{ background: "rgba(0,0,0,0.92)", backdropFilter: "blur(12px)" }}>
+      <div className="w-full max-w-md rounded-3xl p-8 text-center animate-slide-up"
+        style={{ background: "#141414", border: "1px solid rgba(255,77,166,0.4)" }}>
+        <div className="text-6xl mb-4 animate-float">🏆</div>
+        <h2 className="font-display text-4xl mb-2" style={{ color: "var(--neon-pink)" }}>Order Placed!</h2>
+        <p className="text-sm mb-1" style={{ color: "rgba(255,255,255,0.5)" }}>Order #{order.orderId}</p>
+        <p className="mb-6" style={{ color: "rgba(255,255,255,0.7)" }}>
+          Thanks <span className="font-bold text-white">{order.name}</span>! We'll reach out to <span style={{ color: "var(--neon-cyan)" }}>{order.email}</span> or <span style={{ color: "var(--neon-cyan)" }}>{order.phone}</span> to arrange your pickup.
+        </p>
+
+        <div className="rounded-2xl p-4 mb-6 text-left" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
+          <p className="text-xs font-bold mb-3" style={{ color: "rgba(255,255,255,0.4)", letterSpacing: "0.1em" }}>YOUR ORDER</p>
+          {order.items.map((item, i) => (
+            <div key={i} className="flex justify-between items-center text-sm mb-2">
+              <span className="text-white">{item.product.name} <span style={{ color: "rgba(255,255,255,0.4)" }}>× {item.qty} ({item.size})</span></span>
+              <span style={{ color: "var(--neon-yellow)" }}>${item.product.priceNum * item.qty}</span>
+            </div>
+          ))}
+          <div className="flex justify-between mt-3 pt-3 font-display text-xl" style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}>
+            <span className="text-white">Total</span>
+            <span style={{ color: "var(--neon-yellow)" }}>${order.total}</span>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-2 justify-center mb-6 text-sm font-semibold"
+          style={{ color: "var(--neon-cyan)" }}>
+          <Icon name="MapPin" size={16} color="var(--neon-cyan)" />
+          No payment now — pay at pickup
+        </div>
+
+        <button className="btn-neon w-full" onClick={onDone}>Back to Shop 🛍️</button>
+      </div>
+    </div>
+  );
+}
+
+function CartDrawer({ cart, setCart, open, setOpen, showToast, onCheckout }: {
   cart: CartItem[]; setCart: (c: CartItem[]) => void;
   open: boolean; setOpen: (o: boolean) => void;
   showToast: (msg: string, type?: "success" | "info") => void;
+  onCheckout: () => void;
 }) {
   const total = cart.reduce((sum, i) => sum + i.product.priceNum * i.qty, 0);
   const change = (idx: number, delta: number) => {
@@ -846,10 +1000,17 @@ function Footer({ setActive }: { setActive: (s: string) => void }) {
   );
 }
 
+type ConfirmedOrder = {
+  name: string; email: string; phone: string; note: string;
+  items: CartItem[]; total: number; orderId: string;
+};
+
 export default function Index() {
   const [active, setActive] = useState("Home");
   const [cart, setCart] = useState<CartItem[]>([]);
   const [cartOpen, setCartOpen] = useState(false);
+  const [checkoutOpen, setCheckoutOpen] = useState(false);
+  const [confirmedOrder, setConfirmedOrder] = useState<ConfirmedOrder | null>(null);
   const [quickView, setQuickView] = useState<Product | null>(null);
   const [toasts, setToasts] = useState<Toast[]>([]);
   let toastId = 0;
@@ -873,6 +1034,15 @@ export default function Index() {
       return [...prev, { product, qty: 1, size }];
     });
     showToast(`${product.name} added to cart!`, "success");
+  };
+
+  const handleConfirm = (info: { name: string; email: string; phone: string; note: string }) => {
+    const total = cart.reduce((s, i) => s + i.product.priceNum * i.qty, 0);
+    const orderId = `LLP-${Date.now().toString(36).toUpperCase()}`;
+    setConfirmedOrder({ ...info, items: [...cart], total, orderId });
+    setCheckoutOpen(false);
+    setCartOpen(false);
+    setCart([]);
   };
 
   const cartCount = cart.reduce((s, i) => s + i.qty, 0);
@@ -907,7 +1077,29 @@ export default function Index() {
       <NewsletterBanner showToast={showToast} />
       <Footer setActive={navigate} />
 
-      <CartDrawer cart={cart} setCart={setCart} open={cartOpen} setOpen={setCartOpen} showToast={showToast} />
+      <CartDrawer
+        cart={cart} setCart={setCart}
+        open={cartOpen} setOpen={setCartOpen}
+        showToast={showToast}
+        onCheckout={() => { setCartOpen(false); setCheckoutOpen(true); }}
+      />
+
+      {checkoutOpen && (
+        <CheckoutModal
+          cart={cart}
+          total={cart.reduce((s, i) => s + i.product.priceNum * i.qty, 0)}
+          onClose={() => { setCheckoutOpen(false); setCartOpen(true); }}
+          onConfirm={handleConfirm}
+        />
+      )}
+
+      {confirmedOrder && (
+        <OrderConfirmation
+          order={confirmedOrder}
+          onDone={() => { setConfirmedOrder(null); navigate("Shop"); }}
+        />
+      )}
+
       {quickView && <QuickViewModal product={quickView} onClose={() => setQuickView(null)} addToCart={addToCart} />}
       <ToastContainer toasts={toasts} remove={removeToast} />
       <BackToTop />
