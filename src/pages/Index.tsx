@@ -4,6 +4,7 @@ import Icon from "@/components/ui/icon";
 const HOODIE_IMG = "https://cdn.ezst.app/projects/1c3c6fd2-f517-4fc8-8a03-f58b2dc7daa8/files/807ab8fb-655a-45e6-be2e-4b65524155ce.jpg";
 const COLLECTION_IMG = "https://cdn.ezst.app/projects/1c3c6fd2-f517-4fc8-8a03-f58b2dc7daa8/files/db036467-b4ef-4c83-987f-d0a38ad7e79d.jpg";
 const LIFESTYLE_IMG = "https://cdn.ezst.app/projects/1c3c6fd2-f517-4fc8-8a03-f58b2dc7daa8/files/3553bf0c-fa81-45be-a670-86f884c89bc2.jpg";
+const HATS_IMG = "https://cdn.ezst.app/projects/1c3c6fd2-f517-4fc8-8a03-f58b2dc7daa8/files/0452ff01-fd55-4d36-a65c-b08f40a3f5c4.jpg";
 
 type Product = {
   id: number; name: string; price: string; priceNum: number; tag: string;
@@ -12,19 +13,19 @@ type Product = {
 };
 
 const products: Product[] = [
-  { id: 1, name: "Lolypop Hoodie", price: "$65", priceNum: 65, tag: "BESTSELLER", tagColor: "var(--neon-pink)", img: HOODIE_IMG, rating: 5, reviews: 128, category: "Apparel", sizes: ["XS","S","M","L","XL","2XL"], description: "Premium heavyweight hoodie with embroidered Lolypop trophy logo. Oversized fit, kangaroo pocket, and brushed fleece interior." },
-  { id: 2, name: "Full Collection Drop", price: "$120", priceNum: 120, tag: "NEW DROP", tagColor: "var(--neon-cyan)", img: COLLECTION_IMG, rating: 5, reviews: 74, category: "Bundle", sizes: ["S","M","L","XL"], description: "The complete Lolypop starter pack. Hoodie + Tee + Cap bundled at a killer price." },
-  { id: 3, name: "Lifestyle Tee", price: "$35", priceNum: 35, tag: "LIMITED", tagColor: "var(--neon-yellow)", img: LIFESTYLE_IMG, rating: 4, reviews: 210, category: "Apparel", sizes: ["XS","S","M","L","XL","2XL"], description: "100% combed cotton tee with neon screen-print graphic. Runs true to size." },
-  { id: 4, name: "Lolypop Cap", price: "$28", priceNum: 28, tag: "HOT", tagColor: "var(--neon-purple)", img: HOODIE_IMG, rating: 5, reviews: 92, category: "Accessories", sizes: ["One Size"], description: "Structured 6-panel cap with embroidered trophy crest. Adjustable snapback." },
-  { id: 5, name: "Candy Phone Case", price: "$18", priceNum: 18, tag: "FAN FAVE", tagColor: "var(--neon-cyan)", img: COLLECTION_IMG, rating: 4, reviews: 305, category: "Accessories", sizes: ["iPhone","Samsung","Pixel"], description: "Tough dual-layer case with full-color Lolypop candy art. Drop-tested." },
-  { id: 6, name: "Gamer Bag", price: "$45", priceNum: 45, tag: "EXCLUSIVE", tagColor: "var(--neon-pink)", img: LIFESTYLE_IMG, rating: 5, reviews: 56, category: "Accessories", sizes: ["One Size"], description: "30L backpack with padded laptop sleeve, hidden pockets, and glow-in-the-dark Lolypop patch." },
+  { id: 1, name: "Neon Pink Snapback", price: "$28", priceNum: 28, tag: "BESTSELLER", tagColor: "var(--neon-pink)", img: HATS_IMG, rating: 5, reviews: 92, category: "Hats", sizes: ["One Size"], description: "Structured 6-panel snapback in neon pink with embroidered Lolypop trophy logo. Adjustable closure, one size fits all." },
+  { id: 2, name: "Cyan Trophy Cap", price: "$28", priceNum: 28, tag: "NEW DROP", tagColor: "var(--neon-cyan)", img: HATS_IMG, rating: 5, reviews: 61, category: "Hats", sizes: ["One Size"], description: "Electric cyan colorway with glow-effect embroidered trophy crest. Clean, minimal brim." },
+  { id: 3, name: "Yellow Gamer Cap", price: "$28", priceNum: 28, tag: "LIMITED", tagColor: "var(--neon-yellow)", img: HATS_IMG, rating: 4, reviews: 48, category: "Hats", sizes: ["One Size"], description: "Bold neon yellow snapback — the loudest hat in the lobby. Embroidered Lolypop logo front and back." },
+  { id: 4, name: "Purple Trophy Hat", price: "$28", priceNum: 28, tag: "HOT", tagColor: "var(--neon-purple)", img: HATS_IMG, rating: 5, reviews: 37, category: "Hats", sizes: ["One Size"], description: "Deep purple cap with metallic purple trophy embroidery. Low-profile fit for that clean streamer look." },
+  { id: 5, name: "All-Black Stealth Cap", price: "$32", priceNum: 32, tag: "FAN FAVE", tagColor: "var(--neon-cyan)", img: HATS_IMG, rating: 5, reviews: 114, category: "Hats", sizes: ["One Size"], description: "All-black everything. Tonal embroidered trophy logo — subtle drip for the real ones." },
+  { id: 6, name: "Trophy Bundle (2 Hats)", price: "$50", priceNum: 50, tag: "BEST VALUE", tagColor: "var(--neon-pink)", img: HATS_IMG, rating: 5, reviews: 29, category: "Hats", sizes: ["One Size"], description: "Pick any 2 Lolypop hats and save $6. Mix and match colorways. Perfect gift pack." },
 ];
 
 const testimonials = [
-  { name: "Zoe K.", handle: "@zoe_plays", text: "The hoodie is INSANE quality. Gets compliments every time I stream.", stars: 5, avatar: "🎮" },
-  { name: "MarcusXL", handle: "@marcusxl", text: "Lolypop merch = the drip. Cap arrived fast and the colors are electric.", stars: 5, avatar: "⚡" },
-  { name: "NightCrawl", handle: "@nightcrawl_gg", text: "Finally merch that actually looks good on camera. Worth every penny.", stars: 5, avatar: "🌙" },
-  { name: "PixelPriya", handle: "@pixelpriya", text: "Bought the full collection drop. My entire squad is obsessed.", stars: 5, avatar: "✨" },
+  { name: "Zoe K.", handle: "@zoe_plays", text: "The pink snapback is INSANE. Gets compliments every single stream.", stars: 5, avatar: "🎮" },
+  { name: "MarcusXL", handle: "@marcusxl", text: "Lolypop hat = the drip. Picked it up fast and the colors are electric.", stars: 5, avatar: "⚡" },
+  { name: "NightCrawl", handle: "@nightcrawl_gg", text: "The all-black stealth cap is clean on camera. Worth every penny.", stars: 5, avatar: "🌙" },
+  { name: "PixelPriya", handle: "@pixelpriya", text: "Got the bundle — one for me, one for my duo partner. Squad is obsessed.", stars: 5, avatar: "✨" },
 ];
 
 const faqs = [
@@ -587,7 +588,7 @@ function ShopSection({ addToCart, openQuickView }: {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All");
   const [sort, setSort] = useState("default");
-  const categories = ["All", "Apparel", "Accessories", "Bundle"];
+  const categories = ["All", "Hats"];
 
   const filtered = products
     .filter(p => (category === "All" || p.category === category) &&
