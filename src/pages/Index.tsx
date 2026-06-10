@@ -1,10 +1,12 @@
 import { useState, useEffect, useCallback } from "react";
 import Icon from "@/components/ui/icon";
 
-const HOODIE_IMG = "https://cdn.ezst.app/projects/1c3c6fd2-f517-4fc8-8a03-f58b2dc7daa8/files/807ab8fb-655a-45e6-be2e-4b65524155ce.jpg";
-const COLLECTION_IMG = "https://cdn.ezst.app/projects/1c3c6fd2-f517-4fc8-8a03-f58b2dc7daa8/files/db036467-b4ef-4c83-987f-d0a38ad7e79d.jpg";
-const LIFESTYLE_IMG = "https://cdn.ezst.app/projects/1c3c6fd2-f517-4fc8-8a03-f58b2dc7daa8/files/3553bf0c-fa81-45be-a670-86f884c89bc2.jpg";
-const HATS_IMG = "https://cdn.ezst.app/projects/1c3c6fd2-f517-4fc8-8a03-f58b2dc7daa8/files/0452ff01-fd55-4d36-a65c-b08f40a3f5c4.jpg";
+const HAT_PINK = "https://cdn.ezst.app/projects/1c3c6fd2-f517-4fc8-8a03-f58b2dc7daa8/files/b85ff0ae-0126-418e-9ba2-558fa07f5898.jpg";
+const HAT_CYAN = "https://cdn.ezst.app/projects/1c3c6fd2-f517-4fc8-8a03-f58b2dc7daa8/files/d5e9278f-ee31-498e-9e8a-8c4565b22764.jpg";
+const HAT_YELLOW = "https://cdn.ezst.app/projects/1c3c6fd2-f517-4fc8-8a03-f58b2dc7daa8/files/790542b2-7ca7-4a6c-be78-f0b8ff5d8b96.jpg";
+const HAT_PURPLE = "https://cdn.ezst.app/projects/1c3c6fd2-f517-4fc8-8a03-f58b2dc7daa8/files/30d99f64-e6f6-4bea-9632-c0f52cf671ea.jpg";
+const HAT_BLACK = "https://cdn.ezst.app/projects/1c3c6fd2-f517-4fc8-8a03-f58b2dc7daa8/files/cbe0327c-5c36-48e1-963d-dbd8ef39f5a5.jpg";
+const HAT_WHITE = "https://cdn.ezst.app/projects/1c3c6fd2-f517-4fc8-8a03-f58b2dc7daa8/files/fd6beb69-46b1-457c-907e-902db75de0f5.jpg";
 
 type Product = {
   id: number; name: string; price: string; priceNum: number; tag: string;
@@ -13,12 +15,12 @@ type Product = {
 };
 
 const products: Product[] = [
-  { id: 1, name: "Neon Pink Snapback", price: "$28", priceNum: 28, tag: "BESTSELLER", tagColor: "var(--neon-pink)", img: HATS_IMG, rating: 5, reviews: 92, category: "Hats", sizes: ["One Size"], description: "Structured 6-panel snapback in neon pink with embroidered Lolypop trophy logo. Adjustable closure, one size fits all." },
-  { id: 2, name: "Cyan Trophy Cap", price: "$28", priceNum: 28, tag: "NEW DROP", tagColor: "var(--neon-cyan)", img: HATS_IMG, rating: 5, reviews: 61, category: "Hats", sizes: ["One Size"], description: "Electric cyan colorway with glow-effect embroidered trophy crest. Clean, minimal brim." },
-  { id: 3, name: "Yellow Gamer Cap", price: "$28", priceNum: 28, tag: "LIMITED", tagColor: "var(--neon-yellow)", img: HATS_IMG, rating: 4, reviews: 48, category: "Hats", sizes: ["One Size"], description: "Bold neon yellow snapback — the loudest hat in the lobby. Embroidered Lolypop logo front and back." },
-  { id: 4, name: "Purple Trophy Hat", price: "$28", priceNum: 28, tag: "HOT", tagColor: "var(--neon-purple)", img: HATS_IMG, rating: 5, reviews: 37, category: "Hats", sizes: ["One Size"], description: "Deep purple cap with metallic purple trophy embroidery. Low-profile fit for that clean streamer look." },
-  { id: 5, name: "All-Black Stealth Cap", price: "$32", priceNum: 32, tag: "FAN FAVE", tagColor: "var(--neon-cyan)", img: HATS_IMG, rating: 5, reviews: 114, category: "Hats", sizes: ["One Size"], description: "All-black everything. Tonal embroidered trophy logo — subtle drip for the real ones." },
-  { id: 6, name: "Trophy Bundle (2 Hats)", price: "$50", priceNum: 50, tag: "BEST VALUE", tagColor: "var(--neon-pink)", img: HATS_IMG, rating: 5, reviews: 29, category: "Hats", sizes: ["One Size"], description: "Pick any 2 Lolypop hats and save $6. Mix and match colorways. Perfect gift pack." },
+  { id: 1, name: "Neon Pink Snapback", price: "$6", priceNum: 6, tag: "BESTSELLER", tagColor: "var(--neon-pink)", img: HAT_PINK, rating: 5, reviews: 92, category: "Hats", sizes: ["One Size"], description: "Structured 6-panel snapback in neon pink with embroidered Lolypop trophy logo. Adjustable closure, one size fits all." },
+  { id: 2, name: "Cyan Trophy Cap", price: "$6", priceNum: 6, tag: "NEW DROP", tagColor: "var(--neon-cyan)", img: HAT_CYAN, rating: 5, reviews: 61, category: "Hats", sizes: ["One Size"], description: "Electric cyan colorway with glow-effect embroidered trophy crest. Clean, minimal brim." },
+  { id: 3, name: "Yellow Gamer Cap", price: "$6", priceNum: 6, tag: "LIMITED", tagColor: "var(--neon-yellow)", img: HAT_YELLOW, rating: 4, reviews: 48, category: "Hats", sizes: ["One Size"], description: "Bold neon yellow snapback — the loudest hat in the lobby. Embroidered Lolypop logo front and back." },
+  { id: 4, name: "Purple Trophy Hat", price: "$6", priceNum: 6, tag: "HOT", tagColor: "var(--neon-purple)", img: HAT_PURPLE, rating: 5, reviews: 37, category: "Hats", sizes: ["One Size"], description: "Deep purple cap with metallic purple trophy embroidery. Low-profile fit for that clean streamer look." },
+  { id: 5, name: "All-Black Stealth Cap", price: "$6", priceNum: 6, tag: "FAN FAVE", tagColor: "var(--neon-cyan)", img: HAT_BLACK, rating: 5, reviews: 114, category: "Hats", sizes: ["One Size"], description: "All-black everything. Tonal embroidered trophy logo — subtle drip for the real ones." },
+  { id: 6, name: "Rainbow Trophy Hat", price: "$6", priceNum: 6, tag: "WILD CARD", tagColor: "var(--neon-yellow)", img: HAT_WHITE, rating: 5, reviews: 29, category: "Hats", sizes: ["One Size"], description: "White cap with a full rainbow embroidered trophy — the most colorful hat in the game. Stand out." },
 ];
 
 const testimonials = [
