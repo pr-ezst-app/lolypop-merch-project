@@ -7,6 +7,9 @@ const HAT_YELLOW = "https://cdn.ezst.app/projects/1c3c6fd2-f517-4fc8-8a03-f58b2d
 const HAT_PURPLE = "https://cdn.ezst.app/projects/1c3c6fd2-f517-4fc8-8a03-f58b2dc7daa8/files/d5de5677-068e-4d4a-887a-33a0a2880111.jpg";
 const HAT_BLACK = "https://cdn.ezst.app/projects/1c3c6fd2-f517-4fc8-8a03-f58b2dc7daa8/files/5ee1fde0-d5b1-4a3a-b07c-67f419773d30.jpg";
 const HAT_WHITE = "https://cdn.ezst.app/projects/1c3c6fd2-f517-4fc8-8a03-f58b2dc7daa8/files/ed134240-51d7-46b2-b415-cf85449585e3.jpg";
+const HAT_TEXT_PINK = "https://cdn.ezst.app/projects/1c3c6fd2-f517-4fc8-8a03-f58b2dc7daa8/files/14f04f4d-ff20-4a98-a227-05682b2cb333.jpg";
+const HAT_TEXT_BLACK = "https://cdn.ezst.app/projects/1c3c6fd2-f517-4fc8-8a03-f58b2dc7daa8/files/d156ab6a-7b1d-4879-9b85-c663d7c700b2.jpg";
+const HAT_TEXT_WHITE = "https://cdn.ezst.app/projects/1c3c6fd2-f517-4fc8-8a03-f58b2dc7daa8/files/66c5ea63-440b-46aa-a0e9-d46582f14e38.jpg";
 
 type Product = {
   id: number; name: string; price: string; priceNum: number; tag: string;
@@ -15,12 +18,15 @@ type Product = {
 };
 
 const products: Product[] = [
-  { id: 1, name: "Neon Pink Snapback", price: "$6", priceNum: 6, tag: "BESTSELLER", tagColor: "var(--neon-pink)", img: HAT_PINK, rating: 5, reviews: 92, category: "Hats", sizes: ["One Size"], description: "Structured 6-panel snapback in neon pink with embroidered Lolypop trophy logo. Adjustable closure, one size fits all." },
-  { id: 2, name: "Cyan Trophy Cap", price: "$6", priceNum: 6, tag: "NEW DROP", tagColor: "var(--neon-cyan)", img: HAT_CYAN, rating: 5, reviews: 61, category: "Hats", sizes: ["One Size"], description: "Electric cyan colorway with glow-effect embroidered trophy crest. Clean, minimal brim." },
-  { id: 3, name: "Yellow Gamer Cap", price: "$6", priceNum: 6, tag: "LIMITED", tagColor: "var(--neon-yellow)", img: HAT_YELLOW, rating: 4, reviews: 48, category: "Hats", sizes: ["One Size"], description: "Bold neon yellow snapback — the loudest hat in the lobby. Embroidered Lolypop logo front and back." },
-  { id: 4, name: "Purple Trophy Hat", price: "$6", priceNum: 6, tag: "HOT", tagColor: "var(--neon-purple)", img: HAT_PURPLE, rating: 5, reviews: 37, category: "Hats", sizes: ["One Size"], description: "Deep purple cap with metallic purple trophy embroidery. Low-profile fit for that clean streamer look." },
-  { id: 5, name: "All-Black Stealth Cap", price: "$6", priceNum: 6, tag: "FAN FAVE", tagColor: "var(--neon-cyan)", img: HAT_BLACK, rating: 5, reviews: 114, category: "Hats", sizes: ["One Size"], description: "All-black everything. Tonal embroidered trophy logo — subtle drip for the real ones." },
-  { id: 6, name: "Rainbow Trophy Hat", price: "$6", priceNum: 6, tag: "WILD CARD", tagColor: "var(--neon-yellow)", img: HAT_WHITE, rating: 5, reviews: 29, category: "Hats", sizes: ["One Size"], description: "White cap with a full rainbow embroidered trophy — the most colorful hat in the game. Stand out." },
+  { id: 1, name: "Neon Pink Trophy Cap", price: "$6", priceNum: 6, tag: "BESTSELLER", tagColor: "var(--neon-pink)", img: HAT_PINK, rating: 5, reviews: 92, category: "Trophy Logo", sizes: ["One Size"], description: "Neon pink snapback with embroidered trophy logo — LOLYPOP written inside. Adjustable, one size fits all." },
+  { id: 2, name: "Cyan Trophy Cap", price: "$6", priceNum: 6, tag: "HOT", tagColor: "var(--neon-cyan)", img: HAT_CYAN, rating: 5, reviews: 61, category: "Trophy Logo", sizes: ["One Size"], description: "Electric cyan colorway with embroidered trophy crest — LOLYPOP written inside. Clean, minimal brim." },
+  { id: 3, name: "Yellow Trophy Cap", price: "$6", priceNum: 6, tag: "LIMITED", tagColor: "var(--neon-yellow)", img: HAT_YELLOW, rating: 4, reviews: 48, category: "Trophy Logo", sizes: ["One Size"], description: "Bold neon yellow snapback with trophy embroidery — LOLYPOP inside. The loudest hat in the lobby." },
+  { id: 4, name: "Lolypop Text — Pink", price: "$6", priceNum: 6, tag: "NEW DROP", tagColor: "var(--neon-pink)", img: HAT_TEXT_PINK, rating: 5, reviews: 44, category: "Text", sizes: ["One Size"], description: "Pink cap with bold LOLYPOP embroidered text across the front. No logo, just the name. Clean and loud." },
+  { id: 5, name: "Lolypop Text — Black", price: "$6", priceNum: 6, tag: "FAN FAVE", tagColor: "var(--neon-cyan)", img: HAT_TEXT_BLACK, rating: 5, reviews: 114, category: "Text", sizes: ["One Size"], description: "All-black snapback with neon pink LOLYPOP text embroidered front and center. Subtle drip for the real ones." },
+  { id: 6, name: "Lolypop Text — White", price: "$6", priceNum: 6, tag: "WILD CARD", tagColor: "var(--neon-purple)", img: HAT_TEXT_WHITE, rating: 5, reviews: 37, category: "Text", sizes: ["One Size"], description: "Clean white cap with cyan LOLYPOP text embroidery. The freshest colorway in the lineup." },
+  { id: 7, name: "Purple Trophy Hat", price: "$6", priceNum: 6, tag: "HOT", tagColor: "var(--neon-purple)", img: HAT_PURPLE, rating: 5, reviews: 37, category: "Trophy Logo", sizes: ["One Size"], description: "Deep purple cap with trophy embroidery — LOLYPOP written inside. Low-profile fit." },
+  { id: 8, name: "Black Stealth Trophy", price: "$6", priceNum: 6, tag: "EXCLUSIVE", tagColor: "var(--neon-yellow)", img: HAT_BLACK, rating: 5, reviews: 29, category: "Trophy Logo", sizes: ["One Size"], description: "All-black cap, tonal trophy embroidery with LOLYPOP inside. Barely visible until you look close." },
+  { id: 9, name: "Rainbow Trophy Hat", price: "$6", priceNum: 6, tag: "WILD CARD", tagColor: "var(--neon-yellow)", img: HAT_WHITE, rating: 5, reviews: 29, category: "Trophy Logo", sizes: ["One Size"], description: "White cap with rainbow trophy — LOLYPOP in full color inside. The most extra hat we make." },
 ];
 
 const testimonials = [
@@ -590,7 +596,7 @@ function ShopSection({ addToCart, openQuickView }: {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All");
   const [sort, setSort] = useState("default");
-  const categories = ["All", "Hats"];
+  const categories = ["All", "Trophy Logo", "Text"];
 
   const filtered = products
     .filter(p => (category === "All" || p.category === category) &&
