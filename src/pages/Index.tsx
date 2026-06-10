@@ -51,7 +51,7 @@ function NavBar({ active, setActive }: { active: string; setActive: (s: string) 
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <button onClick={() => setActive("Home")} className="font-display text-3xl animate-glow-pulse"
           style={{ color: "var(--neon-pink)" }}>
-          🍭 LOLYPOP
+          🏆 LOLYPOP
         </button>
         <div className="hidden md:flex items-center gap-1">
           {links.map(link => (
@@ -130,7 +130,7 @@ function HomeSection({ setActive }: { setActive: (s: string) => void }) {
         <div className="flex gap-8 animate-marquee whitespace-nowrap">
           {Array(8).fill(null).map((_, i) => (
             <span key={i} className="font-display text-lg" style={{ color: "var(--neon-pink)" }}>
-              🍭 LOLYPOP MERCH &nbsp;&nbsp; ✦ &nbsp;&nbsp; NEW DROP &nbsp;&nbsp; ✦ &nbsp;&nbsp; FREE SHIPPING OVER $50 &nbsp;&nbsp; ✦ &nbsp;&nbsp;
+              🏆 LOLYPOP MERCH &nbsp;&nbsp; ✦ &nbsp;&nbsp; NEW DROP &nbsp;&nbsp; ✦ &nbsp;&nbsp; FREE SHIPPING OVER $50 &nbsp;&nbsp; ✦ &nbsp;&nbsp;
             </span>
           ))}
         </div>
@@ -400,7 +400,7 @@ function Footer({ setActive }: { setActive: (s: string) => void }) {
     <footer className="px-6 py-10" style={{ borderTop: "1px solid rgba(255,77,166,0.2)", background: "rgba(255,77,166,0.03)" }}>
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
         <button className="font-display text-2xl" style={{ color: "var(--neon-pink)" }} onClick={() => setActive("Home")}>
-          🍭 LOLYPOP
+          🏆 LOLYPOP
         </button>
         <p className="text-sm" style={{ color: "rgba(255,255,255,0.35)" }}>
           © 2026 Lolypop. All rights reserved. Level up your drip.
