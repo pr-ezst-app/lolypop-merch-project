@@ -1,12 +1,12 @@
 import { useState, useEffect, useCallback } from "react";
 import Icon from "@/components/ui/icon";
 
-const HAT_PINK = "https://cdn.ezst.app/projects/1c3c6fd2-f517-4fc8-8a03-f58b2dc7daa8/files/b85ff0ae-0126-418e-9ba2-558fa07f5898.jpg";
-const HAT_CYAN = "https://cdn.ezst.app/projects/1c3c6fd2-f517-4fc8-8a03-f58b2dc7daa8/files/d5e9278f-ee31-498e-9e8a-8c4565b22764.jpg";
-const HAT_YELLOW = "https://cdn.ezst.app/projects/1c3c6fd2-f517-4fc8-8a03-f58b2dc7daa8/files/790542b2-7ca7-4a6c-be78-f0b8ff5d8b96.jpg";
-const HAT_PURPLE = "https://cdn.ezst.app/projects/1c3c6fd2-f517-4fc8-8a03-f58b2dc7daa8/files/30d99f64-e6f6-4bea-9632-c0f52cf671ea.jpg";
-const HAT_BLACK = "https://cdn.ezst.app/projects/1c3c6fd2-f517-4fc8-8a03-f58b2dc7daa8/files/cbe0327c-5c36-48e1-963d-dbd8ef39f5a5.jpg";
-const HAT_WHITE = "https://cdn.ezst.app/projects/1c3c6fd2-f517-4fc8-8a03-f58b2dc7daa8/files/fd6beb69-46b1-457c-907e-902db75de0f5.jpg";
+const HAT_PINK = "https://cdn.ezst.app/projects/1c3c6fd2-f517-4fc8-8a03-f58b2dc7daa8/files/3601d57a-b715-41bb-a014-93a2174bed46.jpg";
+const HAT_CYAN = "https://cdn.ezst.app/projects/1c3c6fd2-f517-4fc8-8a03-f58b2dc7daa8/files/5f5c2bdf-0381-46b3-97a4-9936e65cb20b.jpg";
+const HAT_YELLOW = "https://cdn.ezst.app/projects/1c3c6fd2-f517-4fc8-8a03-f58b2dc7daa8/files/2ee8acd3-f4a6-4188-a48c-9dd2ff4ef154.jpg";
+const HAT_PURPLE = "https://cdn.ezst.app/projects/1c3c6fd2-f517-4fc8-8a03-f58b2dc7daa8/files/d5de5677-068e-4d4a-887a-33a0a2880111.jpg";
+const HAT_BLACK = "https://cdn.ezst.app/projects/1c3c6fd2-f517-4fc8-8a03-f58b2dc7daa8/files/5ee1fde0-d5b1-4a3a-b07c-67f419773d30.jpg";
+const HAT_WHITE = "https://cdn.ezst.app/projects/1c3c6fd2-f517-4fc8-8a03-f58b2dc7daa8/files/ed134240-51d7-46b2-b415-cf85449585e3.jpg";
 
 type Product = {
   id: number; name: string; price: string; priceNum: number; tag: string;
