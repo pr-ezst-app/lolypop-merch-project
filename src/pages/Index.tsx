@@ -28,9 +28,10 @@ const testimonials = [
 ];
 
 const faqs = [
-  { q: "How long does shipping take?", a: "Standard shipping takes 5–7 business days. Express (2–3 days) is available at checkout." },
-  { q: "Do you ship internationally?", a: "Yes! We ship worldwide. International orders typically arrive in 10–15 business days." },
-  { q: "What's your return policy?", a: "30-day hassle-free returns. If you don't love it, we'll make it right — no questions asked." },
+  { q: "How do I get my order?", a: "All orders are pickup only! Once your order is ready, we'll contact you to arrange a pickup time and location." },
+  { q: "Where do I pick up my order?", a: "Pickup location details will be sent to you after your order is confirmed. Stay tuned to our socials for event popup locations!" },
+  { q: "How long until my order is ready for pickup?", a: "Orders are typically ready within 2–3 business days. You'll get a notification when it's good to go." },
+  { q: "What's your return policy?", a: "30-day hassle-free returns on pickup orders. If you don't love it, bring it back and we'll make it right." },
   { q: "Are the sizes true to fit?", a: "Our hoodies run slightly oversized for that streetwear look. Check the size guide on each product page." },
   { q: "When does new merch drop?", a: "New drops happen every season. Follow us on socials or join our email list to be first to know!" },
 ];
@@ -211,22 +212,18 @@ function CartDrawer({ cart, setCart, open, setOpen, showToast }: {
               <span>Subtotal ({cart.reduce((s, i) => s + i.qty, 0)} items)</span>
               <span className="font-bold text-white">${total}</span>
             </div>
-            <div className="flex justify-between mb-4 text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>
-              <span>Shipping</span>
-              <span style={{ color: total >= 50 ? "var(--neon-cyan)" : "rgba(255,255,255,0.5)" }}>
-                {total >= 50 ? "FREE 🎉" : `$8.99`}
-              </span>
+            <div className="flex justify-between mb-4 text-sm">
+              <span style={{ color: "rgba(255,255,255,0.5)" }}>Fulfillment</span>
+              <span style={{ color: "var(--neon-cyan)" }}>Pickup only 🏆</span>
             </div>
             <div className="flex justify-between mb-5 font-display text-2xl">
               <span style={{ color: "white" }}>Total</span>
-              <span style={{ color: "var(--neon-yellow)" }}>${total >= 50 ? total : total + 8.99}</span>
+              <span style={{ color: "var(--neon-yellow)" }}>${total}</span>
             </div>
-            {total < 50 && (
-              <div className="mb-4 text-xs text-center py-2 rounded-xl"
-                style={{ background: "rgba(0,240,255,0.08)", border: "1px solid rgba(0,240,255,0.2)", color: "var(--neon-cyan)" }}>
-                Add ${(50 - total).toFixed(0)} more for free shipping!
-              </div>
-            )}
+            <div className="mb-4 text-xs text-center py-2 rounded-xl"
+              style={{ background: "rgba(0,240,255,0.06)", border: "1px solid rgba(0,240,255,0.2)", color: "var(--neon-cyan)" }}>
+              📍 Pickup details sent after order confirmation
+            </div>
             <button className="btn-neon w-full" onClick={() => { showToast("Checkout coming soon! 🏆", "info"); }}>
               Checkout →
             </button>
@@ -420,7 +417,7 @@ function HomeSection({ setActive }: { setActive: (s: string) => void }) {
         <div className="flex gap-8 animate-marquee whitespace-nowrap">
           {Array(8).fill(null).map((_, i) => (
             <span key={i} className="font-display text-lg" style={{ color: "var(--neon-pink)" }}>
-              🏆 LOLYPOP MERCH &nbsp;&nbsp; ✦ &nbsp;&nbsp; NEW DROP &nbsp;&nbsp; ✦ &nbsp;&nbsp; FREE SHIPPING OVER $50 &nbsp;&nbsp; ✦ &nbsp;&nbsp;
+              🏆 LOLYPOP MERCH &nbsp;&nbsp; ✦ &nbsp;&nbsp; NEW DROP &nbsp;&nbsp; ✦ &nbsp;&nbsp; PICKUP ONLY &nbsp;&nbsp; ✦ &nbsp;&nbsp; ORDER ONLINE — COLLECT IN PERSON &nbsp;&nbsp; ✦ &nbsp;&nbsp;
             </span>
           ))}
         </div>
@@ -811,7 +808,7 @@ function NewsletterBanner({ showToast }: { showToast: (msg: string, type?: "succ
       <div className="max-w-2xl mx-auto text-center">
         <p className="font-display text-3xl mb-2" style={{ color: "var(--neon-pink)" }}>🏆 Never Miss a Drop</p>
         <p className="text-sm mb-5" style={{ color: "rgba(255,255,255,0.5)" }}>
-          Join 10,000+ gamers. Get early access to new merch & exclusive discounts.
+          Join 10,000+ gamers. Get early access to new merch, exclusive discounts & pickup event alerts.
         </p>
         {done ? (
           <p className="font-bold" style={{ color: "var(--neon-cyan)" }}>✓ You're in! Check your inbox.</p>
